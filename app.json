@@ -5,11 +5,12 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "cribalert",
+    "scheme": "com.crib-alert",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.damygoes.crib-alert"
     },
     "android": {
       "adaptiveIcon": {
@@ -37,6 +38,10 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+    "EXPO_PUBLIC_SUPABASE_URL":"https://wqrstqxujkrrcmpswpap.supabase.co",
+    "EXPO_PUBLIC_SUPABASE_ANON_KEY":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndxcnN0cXh1amtycmNtcHN3cGFwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE5OTA3MTIsImV4cCI6MjA2NzU2NjcxMn0.ZtS-FmJWNfdke0iTGs1f_RboTFbpoGcE61nEz5wQPRc"
     }
   }
 }

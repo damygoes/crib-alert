@@ -1,7 +1,7 @@
 import { Image } from 'expo-image';
 import { StyleSheet } from 'react-native';
 
-import { useAuth } from '@/components/auth/AuthContext';
+import { useSupabaseSession } from '@/components/auth/AuthContext';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedButton } from '@/components/ThemedButton';
 import { ThemedCard } from '@/components/ThemedCard';
@@ -12,15 +12,14 @@ import { router } from 'expo-router';
 import { useEffect } from 'react';
 
 export default function HomeScreen() {
-  const { isLoggedIn } = useAuth();
+
+  const { session } = useSupabaseSession();
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!session) {
       router.replace('/login');
     }
-  }, [isLoggedIn]);
-
-  if (!isLoggedIn) return null; // or loading indicator
+  }, [session]);
 
   return (
     <ParallaxScrollView
