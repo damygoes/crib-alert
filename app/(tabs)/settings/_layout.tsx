@@ -1,14 +1,26 @@
+import { COLORS } from '@/constants/Colors';
+import { useColorScheme } from '@/hooks/useColorScheme';
 import { Stack } from 'expo-router';
 
 export default function SettingsStackLayout() {
+
+  const theme = useColorScheme();
+  const isDarkMode = theme === 'dark';
+
+  console.log("SettingsStackLayout rendered with theme:", theme);
+
   return (
     <Stack
       screenOptions={{
         headerShown: true,
         headerStyle: {
-          backgroundColor: '#f4f4f5',
+          backgroundColor: isDarkMode ? COLORS.dark.background : COLORS.light.background,
         },
-        headerTintColor: '#000',
+        headerTintColor: isDarkMode ? COLORS.dark.text : COLORS.light.text,
+        headerTitleStyle: {
+          fontSize: 20, 
+          fontWeight: 'bold', 
+        },
       }}
     >
       <Stack.Screen 
@@ -31,6 +43,13 @@ export default function SettingsStackLayout() {
         name="general" 
         options={{ 
           title: 'General Settings',
+          presentation: 'modal',
+        }} 
+      />
+      <Stack.Screen 
+        name="device-form" 
+        options={{ 
+          title: 'Device Setup',
           presentation: 'modal',
         }} 
       />

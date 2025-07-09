@@ -10,11 +10,17 @@ import { useSupabaseSession } from '@/services/SupabaseAuthProvider';
 import { useEffect } from 'react';
 
 export function RootLayoutContent() {
-  const { loading, session } = useSupabaseSession();
+  
+  const { loading: authLoading, session } = useSupabaseSession();
+
   const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
+
+  const [fontsLoaded] = useFonts({
     SpaceMono: require('../../assets/fonts/SpaceMono-Regular.ttf'),
   });
+
+  const loading = authLoading || !fontsLoaded;
+
 
   useEffect(() => {
     if (!loading && !session) {
@@ -22,11 +28,12 @@ export function RootLayoutContent() {
     }
   }, [loading, session]);
 
-  if (!loaded) return null;
-
   if (loading) return <SplashScreen />;
 
-  if (!loading && !session) return null; 
+  if (!session) {
+    // We redirected, so render nothing here
+    return null;
+  }
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>

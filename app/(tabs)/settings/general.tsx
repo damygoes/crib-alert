@@ -1,12 +1,7 @@
-import { Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import GeneralSettingsScreen from '@/components/settings/general/GeneralSettingsScreen';
 
-export default function GeneralSettingsScreen() {
+export default function GeneralSettings() {
   return (
-    <SafeAreaView>
-        <Text>
-            General Settings Screen
-        </Text>
-    </SafeAreaView>
+    <GeneralSettingsScreen />
   );
 }

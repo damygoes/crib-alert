@@ -12,9 +12,9 @@ export function AddMethodSelector({ onSelect }: Props) {
       <ThemedButton style={styles.methodButton} onPress={() => onSelect('manual')}>
         Add Manually
       </ThemedButton>
-      <ThemedButton style={styles.methodButton} onPress={() => onSelect('scan')}>
+      {/* <ThemedButton style={styles.methodButton} onPress={() => onSelect('scan')}>
         Scan QR Code
-      </ThemedButton>
+      </ThemedButton> */}
     </View>
   );
 }

@@ -35,9 +35,3 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
-  {/* <Camera
-          style={StyleSheet.absoluteFill}
-          type={CameraType.back}
-          onBarCodeScanned={onBarCodeScanned}
-        /> */}
