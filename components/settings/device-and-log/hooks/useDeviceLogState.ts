@@ -4,15 +4,14 @@ import { useState } from 'react';
 import { Alert } from 'react-native';
 
 export const useDeviceLogState = () => {
-  const [keepLogs, setKeepLogs] = useState(false);
   const [deviceId, setDeviceId] = useState('');
   const [deviceName, setDeviceName] = useState('');
   const [scanning, setScanning] = useState(false);
   const [addMethod, setAddMethod] = useState<null | 'manual' | 'scan'>(null);
 
   const onSave = () => {
-    console.log({ deviceId, deviceName, keepLogs });
-    Alert.alert('Settings saved', `Device ID: ${deviceId}\nDevice Name: ${deviceName || '(none)'}\nKeep Logs: ${keepLogs}`);
+    console.log({ deviceId, deviceName });
+    Alert.alert('Settings saved', `Device ID: ${deviceId}\nDevice Name: ${deviceName || '(none)'}`);
     setDeviceId('');
     setDeviceName('');
     setAddMethod(null);
@@ -50,7 +49,6 @@ export const useDeviceLogState = () => {
 };
 
   return {
-    keepLogs, setKeepLogs,
     deviceId, setDeviceId,
     deviceName, setDeviceName,
     scanning, setScanning,

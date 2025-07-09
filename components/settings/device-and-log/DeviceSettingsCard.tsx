@@ -10,7 +10,7 @@ export const DeviceSettingsCard = ({ keepLogs, setKeepLogs }: {
   <ThemedCard>
     <ThemedText type="subtitle" style={styles.title}>Log Settings</ThemedText>
     <ThemedText style={styles.description}>Enable or disable keeping logs for this device.</ThemedText>
-    <LogSettingsToggle keepLogs={keepLogs} setKeepLogs={setKeepLogs} />
+    <LogSettingsToggle />
   </ThemedCard>
 );
 
