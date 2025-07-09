@@ -7,8 +7,6 @@ export default function SettingsStackLayout() {
   const theme = useColorScheme();
   const isDarkMode = theme === 'dark';
 
-  console.log("SettingsStackLayout rendered with theme:", theme);
-
   return (
     <Stack
       screenOptions={{
