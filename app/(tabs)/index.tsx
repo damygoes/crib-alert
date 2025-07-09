@@ -1,13 +1,13 @@
 import { Image } from 'expo-image';
 import { StyleSheet } from 'react-native';
 
-import { useSupabaseSession } from '@/components/auth/AuthContext';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedButton } from '@/components/ThemedButton';
 import { ThemedCard } from '@/components/ThemedCard';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { COLORS } from '@/constants/Colors';
+import { useSupabaseSession } from '@/services/SupabaseAuthProvider';
 import { router } from 'expo-router';
 import { useEffect } from 'react';
 

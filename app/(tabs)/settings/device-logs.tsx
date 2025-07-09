@@ -1,19 +1,28 @@
 import { Camera } from 'expo-camera';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { AddMethodSelector } from '@/components/settings/AddMethodSelector';
 import { BarcodeScannerModal } from '@/components/settings/BarcodeScannerModal';
 import { DeviceFormModal } from '@/components/settings/DeviceForm';
-import { LogoutButton } from '@/components/settings/LogoutButton';
 import { LogSettingsToggle } from '@/components/settings/LogSettingsToggle';
 import { ThemedCard } from '@/components/ThemedCard';
 import { ThemedText } from '@/components/ThemedText';
 import { COLORS } from '@/constants/Colors';
 import { Image } from 'expo-image';
+import { useNavigation } from 'expo-router';
 
-export default function SettingsScreen() {
+export const screenOptions = {
+  headerShown: true,
+  title: 'Device & Logs',
+};
+
+export default function DeviceLogsScreen() {
+
+  const navigation = useNavigation();
+
   const [keepLogs, setKeepLogs] = useState(false);
 
   const [deviceId, setDeviceId] = useState('');
@@ -61,28 +70,42 @@ export default function SettingsScreen() {
     }
   };
 
+  useEffect(() => {
+    navigation.setOptions({
+      headerShown: true,
+      title: 'Device & Logs',
+    });
+  }, [navigation]);
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{
-        light: COLORS.light.muted,
-        dark: COLORS.dark.muted,
-      }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/settings-illustration.png')}
-          style={styles.headerImage}
-          contentFit='cover'
-        />
-      }
-    >
-      <ThemedCard>
+        <ParallaxScrollView
+          headerBackgroundColor={{
+            light: COLORS.light.muted,
+            dark: COLORS.dark.muted,
+          }}
+          headerImage={
+            <Image
+              source={require('@/assets/images/baby-logo.png')}
+              style={styles.headerImage}
+              contentFit='cover'
+            />
+          }
+        >
+    <SafeAreaView style={styles.container}>
+      <ThemedCard style={styles.section}>
         <ThemedText type="subtitle">Log Settings</ThemedText>
+        <ThemedText style={styles.description}>
+          Enable or disable keeping logs for this device.
+        </ThemedText>
         <LogSettingsToggle keepLogs={keepLogs} setKeepLogs={setKeepLogs} />
       </ThemedCard>
 
       {!addMethod && (
-        <ThemedCard>
+        <ThemedCard style={styles.section}>
           <ThemedText type="subtitle">Add a Device</ThemedText>
+          <ThemedText style={styles.description}>
+            Add a device manually or scan a QR code to add it automatically.
+          </ThemedText>
           <AddMethodSelector onSelect={handleAddMethodSelect} />
         </ThemedCard>
       )}
@@ -101,23 +124,31 @@ export default function SettingsScreen() {
             setAddMethod(null);
           }}
         />
-
       )}
-
-      <LogoutButton />
 
       <BarcodeScannerModal
         visible={scanning}
         onCancel={cancelScan}
         onBarCodeScanned={handleBarCodeScanned}
       />
+    </SafeAreaView>
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
+  container: {
+    flex: 1,
+  },
+    headerImage: {
     width: '100%',
     height: '100%',
+  },
+  section: {
+    // marginVertical: 10,
+  },
+  description: {
+    marginTop: 4,
+    marginBottom: 8,
   },
 });
