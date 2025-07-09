@@ -1,11 +1,12 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Alert, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ThemedButton } from '@/components/ThemedButton';
 import { ThemedText } from '@/components/ThemedText';
 import { COLORS } from '@/constants/Colors';
+import { useDevices } from '@/features/devices/hooks/useDevice';
 
 export default function DeviceForm() {
   const params = useLocalSearchParams<{
@@ -18,6 +19,8 @@ export default function DeviceForm() {
 
   const [errors, setErrors] = useState<{ deviceId?: string }>({});
 
+  const { addDevice, isAddingDevice } = useDevices();
+
   const onSave = () => {
     const newErrors: typeof errors = {};
 
@@ -28,9 +31,23 @@ export default function DeviceForm() {
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      console.log({ deviceId, deviceName });
-      router.back();
+      addDevice(
+        { name: deviceName, device_id: deviceId },
+        {
+          onSuccess: () => {
+            Alert.alert('Success', 'Device saved successfully.');
+            router.back();
+          },
+          onError: (error) => {
+            Alert.alert('Error', `Failed to save device: ${error.message}`);
+          },
+        }
+      );
     }
+  };
+
+  const handleNavigateBack = () => {
+    router.back();
   };
 
   return (
@@ -71,12 +88,14 @@ export default function DeviceForm() {
       <View style={styles.formButtons}>
         <ThemedButton
           style={styles.cancelButton}
-          onPress={() => router.back()}
+          disabled={isAddingDevice}
+          onPress={handleNavigateBack}
         >
           <Text style={styles.cancelButtonText}>Cancel</Text>
         </ThemedButton>
         <ThemedButton onPress={onSave}>
-          <Text style={styles.saveButtonText}>Save</Text>
+          {isAddingDevice ? <ActivityIndicator  color={COLORS.light.white} />
+           : <Text style={styles.saveButtonText}>Save</Text>}
         </ThemedButton>
       </View>
     </SafeAreaView>

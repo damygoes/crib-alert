@@ -3,6 +3,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { StyleSheet } from 'react-native';
 import { AddMethodSelector } from './AddMethodSelector';
 
+
 export const AddDeviceSection = ({ onSelect }: { onSelect: (method: 'manual' | 'scan') => void }) => (
   <ThemedCard>
     <ThemedText type="subtitle" style={styles.title}>Add a Device</ThemedText>

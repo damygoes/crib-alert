@@ -20,12 +20,16 @@ export default function SettingsScreen() {
     navigation.setOptions({ title: 'Settings' });
   }, [navigation]);
 
-  const handleDeviceLogsPress = () => {
-    router.push('/settings/device-logs');
+  const handleSecuritySettingsPress = () => {
+    router.push('/settings/security-settings');
   };
 
   const handleGeneralSettingsPress = () => {
     router.push('/settings/general');
+  };
+
+  const handleDevicesPress = () => {
+    router.push('/settings/devices');
   };
 
   return (
@@ -43,10 +47,19 @@ export default function SettingsScreen() {
       }
     >
       <View style={styles.viewContainer}>
-        <ThemedCard onPress={handleDeviceLogsPress}>
-          <ThemedText type="subtitle" style={styles.title}>Device & Logs</ThemedText>
+        <ThemedCard onPress={handleSecuritySettingsPress}>
+          <ThemedText type="subtitle" style={styles.title}>Security & Privacy</ThemedText>
           <ThemedText style={styles.subtitle}>
-            Control whether logs are kept and add new devices manually or via QR code.
+            Manage your security settings, device logs, and privacy preferences.
+          </ThemedText>
+        </ThemedCard>
+
+        <ThemedCard onPress={handleDevicesPress}>
+          <ThemedText type="subtitle" style={styles.title}>
+            My Devices
+          </ThemedText>
+          <ThemedText style={styles.subtitle}>
+            View and manage all your connected devices.
           </ThemedText>
         </ThemedCard>
 

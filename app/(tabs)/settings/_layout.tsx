@@ -31,9 +31,9 @@ export default function SettingsStackLayout() {
         }} 
       />
       <Stack.Screen 
-        name="device-logs" 
+        name="security-settings" 
         options={{ 
-          title: 'Device & Logs',
+          title: 'Security & Privacy',
           presentation: 'modal',
         }} 
       />
@@ -48,6 +48,20 @@ export default function SettingsStackLayout() {
         name="device-form" 
         options={{ 
           title: 'Device Setup',
+          presentation: 'modal',
+        }} 
+      />
+      <Stack.Screen 
+        name="devices" 
+        options={{ 
+          title: 'Device Management',
+          presentation: 'modal',
+        }} 
+      />
+      <Stack.Screen 
+        name="connected-devices" 
+        options={{ 
+          title: 'My Devices',
           presentation: 'modal',
         }} 
       />

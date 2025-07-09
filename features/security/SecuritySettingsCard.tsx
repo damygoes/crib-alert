@@ -3,13 +3,10 @@ import { ThemedText } from '@/components/ThemedText';
 import { StyleSheet } from 'react-native';
 import { LogSettingsToggle } from './LogSettingsToggle';
 
-export const DeviceSettingsCard = ({ keepLogs, setKeepLogs }: {
-  keepLogs: boolean;
-  setKeepLogs: (value: boolean) => void;
-}) => (
+export const SecuritySettingsCard = () => (
   <ThemedCard>
-    <ThemedText type="subtitle" style={styles.title}>Log Settings</ThemedText>
-    <ThemedText style={styles.description}>Enable or disable keeping logs for this device.</ThemedText>
+    <ThemedText type="subtitle" style={styles.title}>Security Settings</ThemedText>
+    <ThemedText style={styles.description}>Enable or disable keeping logs of your devices.</ThemedText>
     <LogSettingsToggle />
   </ThemedCard>
 );
