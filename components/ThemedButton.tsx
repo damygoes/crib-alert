@@ -18,11 +18,14 @@ export function ThemedButton({ children, style, ...props }: ThemedButtonProps) {
 
 const styles = StyleSheet.create({
   button: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
     paddingVertical: 14,
     paddingHorizontal: 24,
     borderRadius: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   text: {
     fontWeight: '600',

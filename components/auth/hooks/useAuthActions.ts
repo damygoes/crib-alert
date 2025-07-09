@@ -1,19 +1,68 @@
 import { supabase } from '@/services/supabase';
+import { makeRedirectUri } from 'expo-auth-session';
+import * as QueryParams from 'expo-auth-session/build/QueryParams';
+import * as WebBrowser from 'expo-web-browser';
+
+WebBrowser.maybeCompleteAuthSession();
+
+const redirectTo = makeRedirectUri();
+
+console.log('🔗 Redirect URI:', redirectTo)
 
 export const useAuthActions = () => {
-  const signUp = async (email: string, password: string) => {
-    return await supabase.auth.signUp({ email, password, options: {
-      emailRedirectTo: 'crib-alert://auth-callback',
-    } });
+  const sendMagicLink = async (email: string) => {
+    const { error } = await supabase.auth.signInWithOtp({
+      email,
+      options: {
+        shouldCreateUser: true,
+        emailRedirectTo: redirectTo,
+      },
+    });
+
+    if (error) throw error;
+    console.log('✅ Magic link sent');
   };
 
-  const signIn = async (email: string, password: string) => {
-    return await supabase.auth.signInWithPassword({ email, password });
+  const createSessionFromUrl = async (url: string) => {
+    const { params, errorCode } = QueryParams.getQueryParams(url);
+
+    if (errorCode) throw new Error(errorCode);
+
+    const { access_token, refresh_token } = params;
+    if (!access_token) return;
+
+    const { data, error } = await supabase.auth.setSession({
+      access_token,
+      refresh_token,
+    });
+
+    if (error) throw error;
+    return data.session;
   };
 
-  const signOut = async () => {
-    return await supabase.auth.signOut();
+  const performOAuth = async (
+    provider: 'github' | 'google' | 'twitter' 
+  ) => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo,
+        skipBrowserRedirect: true,
+      },
+    });
+
+    if (error) throw error;
+
+    const res = await WebBrowser.openAuthSessionAsync(data?.url ?? '', redirectTo);
+
+    if (res.type === 'success' && res.url) {
+      await createSessionFromUrl(res.url);
+    }
   };
 
-  return { signUp, signIn, signOut };
+  return {
+    sendMagicLink,
+    createSessionFromUrl,
+    performOAuth,
+  };
 };
