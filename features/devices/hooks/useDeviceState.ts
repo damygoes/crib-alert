@@ -31,7 +31,7 @@ export const useDeviceState = () => {
   const handleAddMethodSelect = async (method: 'manual' | 'scan') => {
   if (method === 'manual') {
     router.push({
-      pathname: '/(tabs)/settings/device-form',
+      pathname: '/(tabs)/settings/devices/device-form',
       params: {
         deviceId,
         deviceName,

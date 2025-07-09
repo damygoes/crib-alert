@@ -15,7 +15,7 @@ export default function DevicesScreen() {
   const state = useDeviceState();
 
    const handleNavigateToList = () => {
-      router.push('/settings/connected-devices');
+      router.push('/settings/devices/connected-devices');
     };
 
   return (

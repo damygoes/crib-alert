@@ -45,23 +45,30 @@ export default function SettingsStackLayout() {
         }} 
       />
       <Stack.Screen 
-        name="device-form" 
+        name="devices/device-form" 
         options={{ 
           title: 'Device Setup',
           presentation: 'modal',
         }} 
       />
       <Stack.Screen 
-        name="devices" 
+        name="devices/devices" 
         options={{ 
           title: 'Device Management',
           presentation: 'modal',
         }} 
       />
       <Stack.Screen 
-        name="connected-devices" 
+        name="devices/connected-devices" 
         options={{ 
           title: 'My Devices',
+          presentation: 'modal',
+        }} 
+      />
+      <Stack.Screen 
+        name={"devices/edit/[id]"} 
+        options={{ 
+          title: 'Edit Device',
           presentation: 'modal',
         }} 
       />

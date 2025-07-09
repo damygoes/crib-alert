@@ -29,7 +29,7 @@ export default function SettingsScreen() {
   };
 
   const handleDevicesPress = () => {
-    router.push('/settings/devices');
+    router.push('/settings/devices/devices');
   };
 
   return (

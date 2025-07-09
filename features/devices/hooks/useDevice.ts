@@ -1,23 +1,16 @@
 import { useAuthUserId } from '@/hooks/useAuthUserId';
 import { supabase } from '@/services/supabase';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-
-export interface Device {
-  id: string;
-  user_id: string;
-  device_id: string;
-  name?: string;
-  created_at: string;
-  updated_at: string;
-}
-
-export interface DeviceCreationInput {
-  user_id: string;
-  device_id: string;
-  name?: string;
-}
-
-
+import {
+  Device,
+  DeviceCreationInput,
+  DeviceUpdateInput,
+} from '@/types/Device';
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+  useQuery as useSingleQuery,
+} from '@tanstack/react-query';
 
 export function useDevices() {
   const userId = useAuthUserId();
@@ -47,7 +40,23 @@ export function useDevices() {
     enabled: !!userId,
   });
 
-  // Add a new device
+  const useDeviceById = (deviceId: string) =>
+    useSingleQuery<Device | null>({
+      queryKey: ['device', deviceId],
+      queryFn: async () => {
+        const { data, error } = await supabase
+          .from('devices')
+          .select('*')
+          .eq('id', deviceId)
+          .eq('user_id', userId)
+          .single();
+
+        if (error) throw error;
+        return data;
+      },
+      enabled: !!deviceId && !!userId,
+    });
+
   const addDevice = useMutation({
     mutationFn: async (device: Partial<DeviceCreationInput>) => {
       const { data, error } = await supabase
@@ -59,14 +68,11 @@ export function useDevices() {
       if (error) throw error;
       return data;
     },
-    onSuccess: () => {
-      invalidateDevices()
-    },
+    onSuccess: invalidateDevices,
   });
 
-  // Update an existing device
   const updateDevice = useMutation({
-    mutationFn: async (update: { id: string; name?: string; type?: string }) => {
+    mutationFn: async (update: DeviceUpdateInput) => {
       const { id, ...fields } = update;
       const { data, error } = await supabase
         .from('devices')
@@ -78,24 +84,15 @@ export function useDevices() {
       if (error) throw error;
       return data;
     },
-    onSuccess: () => {
-      invalidateDevices()
-    },
+    onSuccess: invalidateDevices,
   });
 
-  // Delete a device
   const deleteDevice = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase
-        .from('devices')
-        .delete()
-        .eq('id', id);
-
+      const { error } = await supabase.from('devices').delete().eq('id', id);
       if (error) throw error;
     },
-    onSuccess: () => {
-      invalidateDevices()
-    },
+    onSuccess: invalidateDevices,
   });
 
   return {
@@ -105,7 +102,10 @@ export function useDevices() {
     error,
     addDevice: addDevice.mutateAsync,
     isAddingDevice: addDevice.isPending,
-    updateDevice,
-    deleteDevice,
+    updateDevice: updateDevice.mutateAsync,
+    isUpdatingDevice: updateDevice.isPending,
+    deleteDevice: deleteDevice.mutateAsync,
+    isDeletingDevice: deleteDevice.isPending,
+    useDeviceById,
   };
 }
