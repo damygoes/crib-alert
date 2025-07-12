@@ -14,15 +14,21 @@ export const useKeepLogs = () => {
     return data.keep_logs;
   };
 
-  const { data: keepLogs, isLoading, error } = useQuery({
+  const {
+    data: keepLogs,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['keep_logs'],
     queryFn: fetchKeepLogs,
   });
 
   const { mutate: updateKeepLogs, isPending: isUpdating } = useMutation({
     mutationFn: async (value: boolean) => {
-      const { data: userData, error: userError } = await supabase.auth.getUser();
-      if (userError || !userData.user?.id) throw userError || new Error('User not found');
+      const { data: userData, error: userError } =
+        await supabase.auth.getUser();
+      if (userError || !userData.user?.id)
+        throw userError || new Error('User not found');
 
       const { error } = await supabase
         .from('users')

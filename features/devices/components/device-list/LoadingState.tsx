@@ -4,8 +4,8 @@ import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 export default function LoadingState() {
   return (
     <View style={styles.centered}>
-        <ActivityIndicator size="small" color={COLORS.light.primary} />
-        <Text style={styles.loadingText}>Loading devices...</Text>
+      <ActivityIndicator size="small" color={COLORS.light.primary} />
+      <Text style={styles.loadingText}>Loading devices...</Text>
     </View>
   );
 }

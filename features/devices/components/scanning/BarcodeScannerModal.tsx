@@ -9,14 +9,20 @@ interface Props {
   onBarCodeScanned: (event: { data: string }) => void;
 }
 
-export function BarcodeScannerModal({ visible, onCancel, onBarCodeScanned }: Props) {
+export function BarcodeScannerModal({
+  visible,
+  onCancel,
+  onBarCodeScanned,
+}: Props) {
   return (
     <Modal visible={visible} animationType="slide" onRequestClose={onCancel}>
       <View style={styles.scannerContainer}>
         <Text> Camera </Text>
-      
+
         <View style={styles.scannerFooter}>
-          <ThemedButton onPress={onCancel}><Text>Cancel</Text></ThemedButton>
+          <ThemedButton onPress={onCancel}>
+            <Text>Cancel</Text>
+          </ThemedButton>
         </View>
       </View>
     </Modal>

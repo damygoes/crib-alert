@@ -11,7 +11,10 @@ export const useDeviceState = () => {
 
   const onSave = () => {
     console.log({ deviceId, deviceName });
-    Alert.alert('Settings saved', `Device ID: ${deviceId}\nDevice Name: ${deviceName || '(none)'}`);
+    Alert.alert(
+      'Settings saved',
+      `Device ID: ${deviceId}\nDevice Name: ${deviceName || '(none)'}`
+    );
     setDeviceId('');
     setDeviceName('');
     setAddMethod(null);
@@ -29,30 +32,37 @@ export const useDeviceState = () => {
   };
 
   const handleAddMethodSelect = async (method: 'manual' | 'scan') => {
-  if (method === 'manual') {
-    router.push({
-      pathname: '/(tabs)/settings/devices/device-form',
-      params: {
-        deviceId,
-        deviceName,
-      },
-    });
-  } else {
-    const { status } = await Camera.requestCameraPermissionsAsync();
-    if (status !== 'granted') {
-      Alert.alert('Permission required', 'Camera permission is required to scan QR codes.');
-      return;
+    if (method === 'manual') {
+      router.push({
+        pathname: '/(tabs)/settings/devices/device-form',
+        params: {
+          deviceId,
+          deviceName,
+        },
+      });
+    } else {
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert(
+          'Permission required',
+          'Camera permission is required to scan QR codes.'
+        );
+        return;
+      }
+      setScanning(true);
+      setAddMethod('scan');
     }
-    setScanning(true);
-    setAddMethod('scan');
-  }
-};
+  };
 
   return {
-    deviceId, setDeviceId,
-    deviceName, setDeviceName,
-    scanning, setScanning,
-    addMethod, setAddMethod,
+    deviceId,
+    setDeviceId,
+    deviceName,
+    setDeviceName,
+    scanning,
+    setScanning,
+    addMethod,
+    setAddMethod,
     handleBarCodeScanned,
     cancelScan,
     handleAddMethodSelect,

@@ -8,7 +8,10 @@ export const useAuthUserId = () => {
     let mounted = true;
 
     const fetchUser = async () => {
-      const { data: { user }, error } = await supabase.auth.getUser();
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser();
       if (error) {
         console.error('Failed to fetch user:', error.message);
         return;

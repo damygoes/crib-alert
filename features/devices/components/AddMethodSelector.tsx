@@ -9,7 +9,10 @@ interface Props {
 export function AddMethodSelector({ onSelect }: Props) {
   return (
     <View style={styles.buttonRow}>
-      <ThemedButton style={styles.methodButton} onPress={() => onSelect('manual')}>
+      <ThemedButton
+        style={styles.methodButton}
+        onPress={() => onSelect('manual')}
+      >
         Add Manually
       </ThemedButton>
       {/* <ThemedButton style={styles.methodButton} onPress={() => onSelect('scan')}>

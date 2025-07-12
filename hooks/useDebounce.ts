@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 
-type DebouncedFunction<T extends (...args: any[]) => void> = (...args: Parameters<T>) => void;
+type DebouncedFunction<T extends (...args: any[]) => void> = (
+  ...args: Parameters<T>
+) => void;
 
 export function useDebounce<T extends (...args: any[]) => void>(
   callback: T,

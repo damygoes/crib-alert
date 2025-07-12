@@ -10,7 +10,10 @@ import { COLORS } from '@/constants/Colors';
 export default function GeneralSettingsScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: COLORS.light.muted, dark: COLORS.dark.muted }}
+      headerBackgroundColor={{
+        light: COLORS.light.muted,
+        dark: COLORS.dark.muted,
+      }}
       headerImage={
         <Image
           source={require('@/assets/images/baby-logo.png')}
@@ -27,7 +30,9 @@ export default function GeneralSettingsScreen() {
 
         <ThemedCard>
           <ThemedText style={styles.sectionTitle}>Appearance</ThemedText>
-          <ThemedText style={styles.placeholder}>Theme & language coming soon</ThemedText>
+          <ThemedText style={styles.placeholder}>
+            Theme & language coming soon
+          </ThemedText>
         </ThemedCard>
       </SafeAreaView>
     </ParallaxScrollView>

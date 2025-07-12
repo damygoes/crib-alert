@@ -15,7 +15,6 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function EditDevice() {
-
   const { id } = useLocalSearchParams<{ id: string }>();
 
   const navigation = useNavigation();
@@ -77,15 +76,18 @@ export default function EditDevice() {
       />
 
       <View style={styles.deviceIdBox}>
-      <ThemedText style={styles.label}>Device ID:</ThemedText>
-        <Text style={styles.deviceIdText}>{device.device_id}</Text>
+        <ThemedText style={styles.label}>Device ID:</ThemedText>
+        <Text
+          style={styles.deviceIdText}
+          numberOfLines={1}
+          ellipsizeMode="tail"
+        >
+          {device.device_id}
+        </Text>
       </View>
 
       <View style={styles.buttons}>
-        <ThemedButton
-          style={styles.cancelButton}
-          onPress={() => router.back()}
-        >
+        <ThemedButton style={styles.cancelButton} onPress={() => router.back()}>
           <Text style={styles.cancelButtonText}>Cancel</Text>
         </ThemedButton>
 
@@ -129,7 +131,11 @@ const styles = StyleSheet.create({
   deviceIdText: {
     color: COLORS.light.muted,
     fontSize: 14,
+    maxWidth: '60%',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
   },
+
   buttons: {
     flexDirection: 'row',
     justifyContent: 'flex-end',

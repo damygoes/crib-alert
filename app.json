@@ -34,6 +34,12 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Allow $(Crib Alert) to access your microphone."
+        }
       ]
     ],
     "experiments": {

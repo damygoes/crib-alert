@@ -8,8 +8,17 @@ import { SecuritySettingsCard } from './SecuritySettingsCard';
 export default function SecuritySettingsScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: COLORS.light.muted, dark: COLORS.dark.muted }}
-      headerImage={<Image source={require('@/assets/images/baby-logo.png')} style={styles.headerImage} contentFit='cover' />}
+      headerBackgroundColor={{
+        light: COLORS.light.muted,
+        dark: COLORS.dark.muted,
+      }}
+      headerImage={
+        <Image
+          source={require('@/assets/images/baby-logo.png')}
+          style={styles.headerImage}
+          contentFit="cover"
+        />
+      }
     >
       <SafeAreaView style={styles.container}>
         <SecuritySettingsCard />

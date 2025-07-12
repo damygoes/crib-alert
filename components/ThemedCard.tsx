@@ -5,7 +5,7 @@ import {
   Pressable,
   StyleSheet,
   View,
-  ViewProps
+  ViewProps,
 } from 'react-native';
 
 type ThemedCardProps = ViewProps & {

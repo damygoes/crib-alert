@@ -1,10 +1,16 @@
 import { COLORS } from '@/constants/Colors';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export default function ErrorState({ errorMessage }: { errorMessage: string | null }) {
+export default function ErrorState({
+  errorMessage,
+}: {
+  errorMessage: string | null;
+}) {
   return (
     <View style={styles.centered}>
-      <Text style={styles.errorText}>Failed to load devices: {errorMessage}</Text>
+      <Text style={styles.errorText}>
+        Failed to load devices: {errorMessage}
+      </Text>
       <TouchableOpacity onPress={() => {}}>
         <Text style={styles.retryText}>Tap to retry</Text>
       </TouchableOpacity>

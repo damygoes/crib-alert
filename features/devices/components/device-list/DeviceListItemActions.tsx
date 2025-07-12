@@ -7,28 +7,30 @@ import { useDevices } from '../../hooks/useDevice';
 export default function DeviceListItemActions({
   deviceId,
 }: {
-    deviceId: string;
+  deviceId: string;
 }) {
-  const {
-    deleteDevice,
-   } = useDevices();
+  const { deleteDevice } = useDevices();
 
   const handleDelete = () => {
-    Alert.alert('Delete Device', 'Are you sure you want to remove this device?', [
-    { text: 'Cancel', style: 'cancel' },
-    {
-        text: 'Delete',
-        style: 'destructive',
-        onPress: async () => {
-        try {
-            await deleteDevice(deviceId);
-        } catch (err: any) {
-            console.error('Delete error:', err.message);
-            Alert.alert('Error', 'Failed to delete device.');
-        }
+    Alert.alert(
+      'Delete Device',
+      'Are you sure you want to remove this device?',
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Delete',
+          style: 'destructive',
+          onPress: async () => {
+            try {
+              await deleteDevice(deviceId);
+            } catch (err: any) {
+              console.error('Delete error:', err.message);
+              Alert.alert('Error', 'Failed to delete device.');
+            }
+          },
         },
-    },
-    ]);
+      ]
+    );
   };
 
   const handleEdit = () => {

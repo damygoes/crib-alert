@@ -1,5 +1,10 @@
 import { useThemeColor } from '@/hooks/useThemeColor';
-import { StyleSheet, Text, TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from 'react-native';
 
 interface ThemedButtonProps extends TouchableOpacityProps {
   children: React.ReactNode;
@@ -10,7 +15,10 @@ export function ThemedButton({ children, style, ...props }: ThemedButtonProps) {
   const textColor = useThemeColor({}, 'card');
 
   return (
-    <TouchableOpacity style={[styles.button, { backgroundColor }, style]} {...props}>
+    <TouchableOpacity
+      style={[styles.button, { backgroundColor }, style]}
+      {...props}
+    >
       <Text style={[styles.text, { color: textColor }]}>{children}</Text>
     </TouchableOpacity>
   );

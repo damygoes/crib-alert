@@ -7,7 +7,7 @@ WebBrowser.maybeCompleteAuthSession();
 
 const redirectTo = makeRedirectUri();
 
-console.log('🔗 Redirect URI:', redirectTo)
+console.log('🔗 Redirect URI:', redirectTo);
 
 export const useAuthActions = () => {
   const sendMagicLink = async (email: string) => {
@@ -40,9 +40,7 @@ export const useAuthActions = () => {
     return data.session;
   };
 
-  const performOAuth = async (
-    provider: 'github' | 'google' | 'twitter' 
-  ) => {
+  const performOAuth = async (provider: 'github' | 'google' | 'twitter') => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
@@ -53,7 +51,10 @@ export const useAuthActions = () => {
 
     if (error) throw error;
 
-    const res = await WebBrowser.openAuthSessionAsync(data?.url ?? '', redirectTo);
+    const res = await WebBrowser.openAuthSessionAsync(
+      data?.url ?? '',
+      redirectTo
+    );
 
     if (res.type === 'success' && res.url) {
       await createSessionFromUrl(res.url);

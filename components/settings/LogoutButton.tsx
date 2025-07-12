@@ -13,21 +13,23 @@ export function LogoutButton() {
 
     if (error) {
       console.error('Logout failed:', error.message);
-      
+
       Alert.alert(
         'Logout Failed',
-        'An error occurred while trying to log out. Please try again later.',
+        'An error occurred while trying to log out. Please try again later.'
       );
 
       return;
     }
 
     router.replace('/login');
-};
+  };
 
   return (
     <ThemedButton style={{ backgroundColor }} onPress={handleLogout}>
-      <Text style={{ color: COLORS.light.white, fontWeight: '600', fontSize: 16 }}>
+      <Text
+        style={{ color: COLORS.light.white, fontWeight: '600', fontSize: 16 }}
+      >
         Log out
       </Text>
     </ThemedButton>

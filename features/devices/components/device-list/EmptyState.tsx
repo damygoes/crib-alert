@@ -4,7 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function EmptyState() {
   return (
     <View style={styles.centered}>
-      <Text style={styles.emptyText}>No devices found. Add one to get started.</Text>
+      <Text style={styles.emptyText}>
+        No devices found. Add one to get started.
+      </Text>
     </View>
   );
 }

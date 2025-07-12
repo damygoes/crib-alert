@@ -5,8 +5,12 @@ import { LogSettingsToggle } from './LogSettingsToggle';
 
 export const SecuritySettingsCard = () => (
   <ThemedCard>
-    <ThemedText type="subtitle" style={styles.title}>Security Settings</ThemedText>
-    <ThemedText style={styles.description}>Enable or disable keeping logs of your devices.</ThemedText>
+    <ThemedText type="subtitle" style={styles.title}>
+      Security Settings
+    </ThemedText>
+    <ThemedText style={styles.description}>
+      Enable or disable keeping logs of your devices.
+    </ThemedText>
     <LogSettingsToggle />
   </ThemedCard>
 );

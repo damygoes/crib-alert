@@ -1,10 +1,6 @@
 import { useAuthUserId } from '@/hooks/useAuthUserId';
 import { supabase } from '@/services/supabase';
-import {
-  Device,
-  DeviceCreationInput,
-  DeviceUpdateInput,
-} from '@/types/Device';
+import { Device, DeviceCreationInput, DeviceUpdateInput } from '@/types/Device';
 import {
   useMutation,
   useQuery,

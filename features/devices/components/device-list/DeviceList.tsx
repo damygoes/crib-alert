@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  FlatList,
-  StyleSheet
-} from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 
 import { useDevices } from '../../hooks/useDevice';
 import DeviceListItem from './DeviceListItem';
@@ -11,16 +8,12 @@ import ErrorState from './ErrorState';
 import LoadingState from './LoadingState';
 
 export default function DeviceList() {
-  const {
-    devices,
-    isLoading,
-    isError,
-    error,
-  } = useDevices();
+  const { devices, isLoading, isError, error } = useDevices();
 
   if (isLoading) return <LoadingState />;
 
-  if (isError) return <ErrorState errorMessage={error?.message || 'An error occurred'} />;
+  if (isError)
+    return <ErrorState errorMessage={error?.message || 'An error occurred'} />;
 
   if (!devices || devices.length === 0) return <EmptyState />;
 

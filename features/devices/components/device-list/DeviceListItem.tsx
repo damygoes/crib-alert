@@ -4,15 +4,17 @@ import { StyleSheet, Text, View } from 'react-native';
 import DeviceListItemActions from './DeviceListItemActions';
 
 interface DeviceListItemProps {
-    device: Device
+  device: Device;
 }
 
-export default function DeviceListItem({device}: DeviceListItemProps) {
+export default function DeviceListItem({ device }: DeviceListItemProps) {
   return (
     <View style={styles.deviceCard}>
       <View style={styles.deviceInfo}>
         <Text style={styles.deviceName}>{device.name || 'Unnamed Device'}</Text>
-        <Text style={styles.deviceId}>{device.device_id}</Text>
+        <Text style={styles.deviceId} numberOfLines={1} ellipsizeMode="tail">
+          {device.device_id}
+        </Text>
       </View>
       <DeviceListItemActions deviceId={device.id} />
     </View>
@@ -44,5 +46,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: COLORS.light.muted,
     marginTop: 2,
+    maxWidth: '60%',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
   },
 });

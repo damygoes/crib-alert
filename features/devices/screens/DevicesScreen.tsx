@@ -11,20 +11,30 @@ import { AddDeviceSection } from '../components/AddDeviceSection';
 import { useDeviceState } from '../hooks/useDeviceState';
 
 export default function DevicesScreen() {
-
   const state = useDeviceState();
 
-   const handleNavigateToList = () => {
-      router.push('/settings/devices/connected-devices');
-    };
+  const handleNavigateToList = () => {
+    router.push('/settings/devices/connected-devices');
+  };
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: COLORS.light.muted, dark: COLORS.dark.muted }}
-      headerImage={<Image source={require('@/assets/images/baby-logo.png')} style={styles.headerImage} contentFit='cover' />}
+      headerBackgroundColor={{
+        light: COLORS.light.muted,
+        dark: COLORS.dark.muted,
+      }}
+      headerImage={
+        <Image
+          source={require('@/assets/images/baby-logo.png')}
+          style={styles.headerImage}
+          contentFit="cover"
+        />
+      }
     >
       <SafeAreaView style={styles.container}>
-        {!state.addMethod && <AddDeviceSection onSelect={state.handleAddMethodSelect} />}
+        {!state.addMethod && (
+          <AddDeviceSection onSelect={state.handleAddMethodSelect} />
+        )}
 
         <ThemedCard onPress={handleNavigateToList}>
           <ThemedText type="subtitle" style={styles.title}>
@@ -48,9 +58,9 @@ export default function DevicesScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1, gap: 24 },
   headerImage: { width: '100%', height: '100%' },
-   title: {
+  title: {
     fontWeight: 'bold',
-    fontSize: 22
+    fontSize: 22,
   },
   subtitle: {
     color: COLORS.light.muted,

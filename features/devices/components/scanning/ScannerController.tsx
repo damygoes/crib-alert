@@ -3,7 +3,7 @@ import { BarcodeScannerModal } from './BarcodeScannerModal';
 export const ScannerController = ({
   visible,
   onBarCodeScanned,
-  onCancel
+  onCancel,
 }: {
   visible: boolean;
   onBarCodeScanned: (event: { data: string }) => void;

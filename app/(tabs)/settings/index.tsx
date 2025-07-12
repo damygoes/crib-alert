@@ -13,7 +13,6 @@ export const screenOptions = {
 };
 
 export default function SettingsScreen() {
-
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -42,13 +41,15 @@ export default function SettingsScreen() {
         <Image
           source={require('@/assets/images/settings-illustration.png')}
           style={styles.headerImage}
-          contentFit='cover'
+          contentFit="cover"
         />
       }
     >
       <View style={styles.viewContainer}>
         <ThemedCard onPress={handleSecuritySettingsPress}>
-          <ThemedText type="subtitle" style={styles.title}>Security & Privacy</ThemedText>
+          <ThemedText type="subtitle" style={styles.title}>
+            Security & Privacy
+          </ThemedText>
           <ThemedText style={styles.subtitle}>
             Manage your security settings, device logs, and privacy preferences.
           </ThemedText>
@@ -64,12 +65,14 @@ export default function SettingsScreen() {
         </ThemedCard>
 
         <ThemedCard onPress={handleGeneralSettingsPress}>
-          <ThemedText type="subtitle" style={styles.title}>General Settings</ThemedText>
+          <ThemedText type="subtitle" style={styles.title}>
+            General Settings
+          </ThemedText>
           <ThemedText style={styles.subtitle}>
             Manage your account, appearance, and language preferences.
           </ThemedText>
         </ThemedCard>
-        </View>
+      </View>
     </ParallaxScrollView>
   );
 }
@@ -80,16 +83,16 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   viewContainer: {
-   display: 'flex',
-   flexDirection: 'column',
-   gap: 24,
-   width: '100%',
-   height: '100%',
-   paddingVertical: 20,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 24,
+    width: '100%',
+    height: '100%',
+    paddingVertical: 20,
   },
   title: {
     fontWeight: 'bold',
-    fontSize: 22
+    fontSize: 22,
   },
   subtitle: {
     color: COLORS.light.muted,

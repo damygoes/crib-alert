@@ -46,9 +46,7 @@ export function LogSettingsToggle() {
         />
       </View>
 
-      {isUpdating && (
-        <Text style={styles.statusText}>Updating...</Text>
-      )}
+      {isUpdating && <Text style={styles.statusText}>Updating...</Text>}
     </ThemedView>
   );
 }

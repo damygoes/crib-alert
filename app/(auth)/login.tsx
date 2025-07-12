@@ -1,16 +1,12 @@
-import React from "react";
-import {
-  ImageBackground, SafeAreaView,
-  StyleSheet
-} from "react-native";
+import React from 'react';
+import { ImageBackground, SafeAreaView, StyleSheet } from 'react-native';
 
 import LoginForm from '@/components/auth/LoginForm';
 
 export default function LoginScreen() {
-
   return (
     <ImageBackground
-      source={require("@/assets/images/login-bg.png")}
+      source={require('@/assets/images/login-bg.png')}
       resizeMode="cover"
       style={styles.background}
     >
@@ -27,6 +23,6 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.4)",
+    backgroundColor: 'rgba(0,0,0,0.4)',
   },
 });

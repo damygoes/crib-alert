@@ -1,6 +1,13 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
-import { ActivityIndicator, Alert, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  ActivityIndicator,
+  Alert,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { ThemedButton } from '@/components/ThemedButton';
@@ -63,10 +70,7 @@ export default function DeviceForm() {
             }
           }}
           placeholder="Enter device ID"
-          style={[
-            styles.input,
-            errors.deviceId && styles.inputError,
-          ]}
+          style={[styles.input, errors.deviceId && styles.inputError]}
           autoCapitalize="none"
           autoCorrect={false}
         />
@@ -94,8 +98,11 @@ export default function DeviceForm() {
           <Text style={styles.cancelButtonText}>Cancel</Text>
         </ThemedButton>
         <ThemedButton onPress={onSave}>
-          {isAddingDevice ? <ActivityIndicator  color={COLORS.light.white} />
-           : <Text style={styles.saveButtonText}>Save</Text>}
+          {isAddingDevice ? (
+            <ActivityIndicator color={COLORS.light.white} />
+          ) : (
+            <Text style={styles.saveButtonText}>Save</Text>
+          )}
         </ThemedButton>
       </View>
     </SafeAreaView>

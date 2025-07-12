@@ -1,4 +1,8 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import {
+  DarkTheme,
+  DefaultTheme,
+  ThemeProvider,
+} from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { router, Slot } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -10,7 +14,6 @@ import { useSupabaseSession } from '@/services/SupabaseAuthProvider';
 import { useEffect } from 'react';
 
 export function RootLayoutContent() {
-  
   const { loading: authLoading, session } = useSupabaseSession();
 
   const colorScheme = useColorScheme();
@@ -20,7 +23,6 @@ export function RootLayoutContent() {
   });
 
   const loading = authLoading || !fontsLoaded;
-
 
   useEffect(() => {
     if (!loading && !session) {
