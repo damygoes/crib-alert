@@ -17,6 +17,10 @@ export default function DevicesScreen() {
     router.push('/settings/devices/connected-devices');
   };
 
+  const handleNavigateToAlertConfig = () => {
+    router.push('/settings/devices/alert-configuration');
+  };
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{
@@ -42,6 +46,15 @@ export default function DevicesScreen() {
           </ThemedText>
           <ThemedText style={styles.subtitle}>
             View and manage all your connected devices.
+          </ThemedText>
+        </ThemedCard>
+
+        <ThemedCard onPress={handleNavigateToAlertConfig}>
+          <ThemedText type="subtitle" style={styles.title}>
+            Alert Configuration
+          </ThemedText>
+          <ThemedText style={styles.subtitle}>
+            Configure alerts for your connected devices.
           </ThemedText>
         </ThemedCard>
 

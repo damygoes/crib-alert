@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { Alert } from 'react-native';
 
 export const useDeviceLogSubscription = (deviceId: string) => {
-  const audioSource = require('../../../assets/sounds/baby-cry.mp3');
+  const audioSource = require('@/assets/sounds/baby/default_baby_cry.mp3');
   const player = useAudioPlayer(audioSource);
 
   useEffect(() => {
