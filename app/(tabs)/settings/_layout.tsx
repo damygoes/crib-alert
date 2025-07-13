@@ -73,6 +73,13 @@ export default function SettingsStackLayout() {
           presentation: 'modal',
         }}
       />
+      <Stack.Screen
+        name={'devices/alert-configuration'}
+        options={{
+          title: 'Alert Configuration',
+          presentation: 'modal',
+        }}
+      />
     </Stack>
   );
 }

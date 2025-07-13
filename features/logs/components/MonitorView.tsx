@@ -5,33 +5,45 @@ import { useDevices } from '@/features/devices/hooks/useDevice';
 import { useDeviceLogSubscription } from '@/features/logs/hooks/useDeviceLogSubscription';
 import { simulateDeviceLog } from '@/lib/dev/simulator';
 import { DeviceEvent } from '@/types/DeviceEvent';
+import { View } from 'react-native';
 
-export default function Monitorview() {
+export default function MonitorView() {
   const { devices } = useDevices();
   const firstDevice = devices?.[0];
 
   useDeviceLogSubscription(firstDevice?.device_id || '');
+  
+  if (!firstDevice) return null;
 
-  const handleEventSimulation = () => {
-    console.log('Simulating device log for device:', firstDevice?.device_id);
-
-    if (firstDevice) {
-      simulateDeviceLog({
-        device_id: firstDevice.device_id,
-        event_type: DeviceEvent.BabyCrying,
-      });
-    }
+  const handleSimulateEvent = (eventType: DeviceEvent) => {
+    simulateDeviceLog({
+      device_id: firstDevice.device_id,
+      event_type: eventType,
+    });
   };
 
   return (
     <ThemedCard>
-      <ThemedText type="subtitle" style={{ fontWeight: '500' }}>
+      <ThemedText type="subtitle" style={{ fontWeight: '500', marginBottom: 8 }}>
         Latest Status
       </ThemedText>
       <ThemedText>All quiet — your baby is sleeping peacefully. 💤</ThemedText>
-      <ThemedButton style={{ marginTop: 12 }} onPress={handleEventSimulation}>
-        Trigger Test Cry
-      </ThemedButton>
+
+      <View style={{ marginTop: 16 }}>
+        <ThemedText type="subtitle" style={{ fontWeight: '500', marginBottom: 8 }}>
+          Simulate Events
+        </ThemedText>
+
+        {Object.values(DeviceEvent).map((eventType) => (
+          <ThemedButton
+            key={eventType}
+            style={{ marginBottom: 8 }}
+            onPress={() => handleSimulateEvent(eventType)}
+          >
+            Simulate {eventType.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+          </ThemedButton>
+        ))}
+      </View>
     </ThemedCard>
   );
 }

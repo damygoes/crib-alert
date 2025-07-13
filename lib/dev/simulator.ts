@@ -10,10 +10,7 @@ export const simulateDeviceLog = async ({
   event_type: DeviceEvent;
   value?: Record<string, any>;
 }) => {
-  console.log(
-    `Simulating device log for ${device_id} with event ${event_type}`,
-    value
-  );
+
   const { error, data } = await supabase.from('device_logs').insert([
     {
       device_id,
